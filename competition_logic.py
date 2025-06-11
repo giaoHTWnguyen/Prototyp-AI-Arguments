@@ -12,7 +12,6 @@ discussion_questions = ["Ist Homeoffice die Zukunft der Arbeit?",
                         "Sollte die Todesstrafe für besonders schwere Verbrechen wieder eingeführt werden, um Gerechtigkeit zu schaffen und potenzielle Täter abzuschrecken?",
                         "Sollten wir Gene verändern dürfen, um Babys schlauer oder talentierter zu machen?"
                         ]
-from api_handler import get_ai_feedback
 
 def choose_question() -> str: #Algorithmus zur Auswahl einer Frage aus dem Diskussionskatalog
     print("\n--- Verfügbare Diskussionsfragen ---")
@@ -36,15 +35,4 @@ def get_user_argumentation() -> str:
     print("\nBitte schreibe deine Argumentation:")
     return input("Dein Text: ")
 
-
-def user_revision_workflow(max_revisions: int = 2) -> str: #Prozess zur Überarbeitung der Argumentation
-
-    current_argumentation = get_user_argumentation()
-    for i in range(max_revisions):
-        print(f"\n--- Runde {i+1} von {max_revisions}: Feedback erhalten ---")
-        # Hole Feedback von der KI
-        feedback = get_ai_feedback(current_argumentation)
-        print("\n --- KI-Feedback ---")
-        print(feedback)
-        print("------------")
 #Funktion Nutzer Workflow und Siegerermittlung
