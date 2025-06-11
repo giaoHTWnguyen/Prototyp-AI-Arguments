@@ -7,7 +7,7 @@ Dieses Projekt ist ein interaktiver KI-Tutor, der Benutzern dabei hilft, ihre ar
 ## Features
 
 - **Interaktives Feedback:** Erhalte detailliertes und formatives Feedback von einer KI zu deiner Argumentation.
-- **Rubrik-Bewertung:** Dein Text wrid nach Kriterien wie Logik, Prägnanz, Überzeugungskraft bewertet.
+- **Rubrik-Bewertung:** Dein Text wird nach Kriterien wie Logik, Prägnanz, Überzeugungskraft bewertet.
 - **Überarbeitungsmöglichkeit:** Optimiere deinen Text basierend auf dem erhaltenen KI-Feedback.
 - **Flexible Diskussionsfragen:** Wähle aus einer Liste von kontroversen Themen.
 
