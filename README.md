@@ -41,7 +41,7 @@ Um dieses Projekt lokal auszuführen, sollten diese Schritte befolgt werden:
 ## Projektstruktur
 
 - .env #Umgebungsvariablen wie API-Schlüssel
-- main.py #Hauptprogramm, steuert den Workflow
+- main.py #Hauptprogramm, steuert den Workflow, von hier soll auch das Programm gestartet werden!
 - api_handler.py #Kommunikation mit der OpenAI API
 - competition_logic.py #Logik für Diskussionsfragen und Benutzerinteratkion
 - README.md #Diese Datei

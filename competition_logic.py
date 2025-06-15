@@ -1,11 +1,9 @@
 discussion_questions = ["Ist Homeoffice die Zukunft der Arbeit?", 
                         "Sollten Schulen Drogentests für Schüler verpflichtend machen?",
                         "Ist der Lohnunterschied zwischen Männern und Frauen das Ergebnis von Diskriminierung?",
-                        "Sollten wir die Entwicklung von autonomer KI stärker regulieren oder sogar stoppen?",
-                        "Sollte eine 4-Tage-Woche flächendeckend eingeführt werden, auch wenn das potenziell weniger Lohn bedeuten könnte? Was ist wichtiger: Karriere oder Freizeit?",
-                        "Ist es moralisch vertretbar, dass Klimaaktivisten durch Aktionen wie das Festkleben auf den Straßen oder das Besprühen von Kunstwerken den Alltag stören und Sachschaden verursachen,"
-                        "um auf die Klimakrise aufmerksam zu machen?",
-                        "Sollte der Fleischkonsum aus ökologischen und ethischen Gründen drastisch reduziert oder sogar verboten werden, um Klimaziele zu erreichen und Tierleid zu mindern?",
+                        "Was ist wichtiger: Karriere oder Freizeit?",
+                        "Ist es moralisch vertretbar, dass Klimaaktivisten sich auf den Straßen festkleben um auf die Klimakrise aufmerksam zu machen?",
+                        "Sollte der Fleischkonsum reduziert oder sogar verboten werden, um Klimaziele zu erreichen und Tierleid zu mindern?",
                         "Angesichts der steigenden Zahl an Studierenden und akademischen Abschlüssen: Verliert ein Hochschulstudium zunehmend an Wert als Garant für beruflichen Erfolg und ein hohes Einkommen?",
                         "Muss in Deutschland die Förderung von Geschlechtervielfalt und LGBTIQ+- Rechten gestoppt werden, um traditionelle Familienwerte zu schützten?",
                         "Ist die Gendersprache in öffentlichen Einrichtungen und Schulen eine notwendige Weiterentwicklung für mehr Gleichberechtigung oder überflüssig?",
@@ -34,5 +32,31 @@ def choose_question() -> str: #Algorithmus zur Auswahl einer Frage aus dem Disku
 def get_user_argumentation() -> str:
     print("\nBitte schreibe deine Argumentation:")
     return input("Dein Text: ")
+
+
+def calculate_final_score(rubric_scores: dict) -> int: #Hier wird die Gewichtung der Kriterien aus dem Rubrik zusammengerechnet. Eine eigene Gewichtung zu berechnen ist besser, um damit die Halluzination und Rechenkraft der LLM zu senken
+    #Gewichtung
+    gewichtung_logik = 0.45
+    gewichtung_praegnanz = 0.20
+    gewichtung_ueberzeugungskraft = 0.35
+
+    #Extraktion der Kriterien aus dem Dictionary (wurde aus der JSON Datei umgewandelt)
+    logik_score = rubric_scores.get("Logik_Kohärenz", 0)
+    praegnanz_score = rubric_scores.get("Prägnanz_Klarheit", 0)
+    ueberzeugungskraft_score = rubric_scores.get("Überzeugungskraft_Argumentstärke", 0)
+
+    max_score_per_criterion = 5
+
+    total_score = ( #Gesamtberechnung
+        (logik_score / max_score_per_criterion) * gewichtung_logik +
+        (praegnanz_score / max_score_per_criterion) * gewichtung_praegnanz +
+        (ueberzeugungskraft_score / max_score_per_criterion) * gewichtung_ueberzeugungskraft
+    )
+
+    #Skalierung auf 100
+    final_score_100 = round(total_score * 100)
+    return final_score_100
+
+
 
 #Funktion Nutzer Workflow und Siegerermittlung
