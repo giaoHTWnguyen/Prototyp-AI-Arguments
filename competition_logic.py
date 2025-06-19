@@ -1,16 +1,32 @@
-discussion_questions = ["Ist Homeoffice die Zukunft der Arbeit?", 
-                        "Sollten Schulen Drogentests für Schüler verpflichtend machen?",
-                        "Ist der Lohnunterschied zwischen Männern und Frauen das Ergebnis von Diskriminierung?",
-                        "Was ist wichtiger: Karriere oder Freizeit?",
-                        "Ist es moralisch vertretbar, dass Klimaaktivisten sich auf den Straßen festkleben um auf die Klimakrise aufmerksam zu machen?",
-                        "Sollte der Fleischkonsum reduziert oder sogar verboten werden, um Klimaziele zu erreichen und Tierleid zu mindern?",
-                        "Angesichts der steigenden Zahl an Studierenden und akademischen Abschlüssen: Verliert ein Hochschulstudium zunehmend an Wert als Garant für beruflichen Erfolg und ein hohes Einkommen?",
-                        "Muss in Deutschland die Förderung von Geschlechtervielfalt und LGBTIQ+- Rechten gestoppt werden, um traditionelle Familienwerte zu schützten?",
-                        "Ist die Gendersprache in öffentlichen Einrichtungen und Schulen eine notwendige Weiterentwicklung für mehr Gleichberechtigung oder überflüssig?",
-                        "Sollte die Todesstrafe für besonders schwere Verbrechen wieder eingeführt werden, um Gerechtigkeit zu schaffen und potenzielle Täter abzuschrecken?",
-                        "Sollten wir Gene verändern dürfen, um Babys schlauer oder talentierter zu machen?"
-                        ]
+discussion_questions_categorized = {
+    "Arbeitswelt & Technologie": [
+        "Ist Homeoffice die Zukunft der Arbeit?",
+        "Verliert ein Hochschulstudium an Wert für den Berufserfolg?",
+        "Sollten wir Gene verändern, um Babys zu optimieren?",
+        "Kann künstliche Intelligenz menschliche Arbeit komplett ersetzen?"
+    ],
+    "Gesellschaft & Ethik": [
+        "Sollten Schulen Drogentests für Schüler einführen?",
+        "Sind Klima-Protest-Blockaden moralisch vertretbar?",
+        "Sollte Fleischkonsum zur Erreichung von Klimazielen reduziert werden?",
+        "Sollte die Todesstrafe für schwere Verbrechen wiedereingeführt werden?"
+    ],
+    "Gleichberechtigung & Vielfalt (Geschlechtervielfalt, LGBTIQ+-Rechte)": [
+        "Wird der Lohnunterschied zwischen Männern und Frauen verursacht durch Diskriminierung?",
+        "Muss die Förderung von Vielfalt auch traditionelle Familienwerte schützen?",
+        "Ist Gendersprache eine nötige Entwicklung oder überflüssig?",
+        "Ist die Einführung von Quoten ein effektives oder notwendiges Mittel, um Gleichheit der Geschlechter zu erreichen?"
+    ],
+    "Persönliche Werte": [
+        "Ab wann sollte ein junger Mensch das Elternhaus verlassen und wer entscheidet darüber?",
+        "Bremsen Traditionen die persönliche Entfaltung?",
+        "Sollte man immer die Wahrheit sagen, auch wenn sie verletzend ist?",
+        "Ist Geld der Schlüssel zum Glück?",
+        "Nimmt die Gründung einer Familie die persönliche Freiheit?"
+    ]
+}
 
+#Choose_question: Funktion wird nicht mehr genutzt --> iteration aller Frage im Terminal
 def choose_question() -> str: #Algorithmus zur Auswahl einer Frage aus dem Diskussionskatalog
     print("\n--- Verfügbare Diskussionsfragen ---")
     for i, question in enumerate(discussion_questions): #Iteration durch den Katalog, es wird eine ID zu jeder Frage gemappt für schnelleren Zugriff
