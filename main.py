@@ -1,9 +1,12 @@
 from api_handler import get_ai_feedback, get_ai_rubric_scores
 from competition_logic import choose_question, get_user_argumentation, calculate_final_score
+from data_logger import log_feedback_data
+from datetime import datetime
+import uuid
 
 def main():
     print("--- Willkommen beim Argumentations-Tutor und Wettbewerb ---")
-
+    user_id = str(uuid.uuid4())
     # 1. Benutzer wählt eine Diskussionsfrage
     selected_question = choose_question()
 
@@ -37,6 +40,7 @@ def main():
     print("\n--- Detailliertes KI-Feedback ---")
     print(detailed_feedback)
     print("---------------------------------")
+    log_feedback_data("Initial", datetime.now(), user_id, selected_question, current_argument, detailed_feedback, rubric_scores, overall_score)
 
     # 4. Überarbeitung anbieten (eine Runde)
     while True:
@@ -65,6 +69,7 @@ def main():
             print("\n--- Detailliertes KI-Feedback zur Überarbeitung ---")
             print(detailed_feedback_revised)
             print("-----------------------------------------------------")
+            log_feedback_data("Revised", datetime.now(), user_id, selected_question, current_argument, detailed_feedback_revised, rubric_scores_revised, overall_score_revised)
             break
             
         elif decision == 'nein':

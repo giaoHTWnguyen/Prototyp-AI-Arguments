@@ -23,11 +23,12 @@ except Exception as e:
 SYSTEM_PROMPT_RUBRIC_EVAL = {
     "role": "system",
     "content" : """Du bist ein KI-Assistent, der ausschließlich dazu dient, argumentative Texte anhand einer vorgegebenen Rubrik zu bewerten. "
-    Deine Antwort muss **ausschließlich** ein JSON-Objekt sein, das die Punktzahlen von 1 bis 5 für jedes Kriterium enthält. Du darfst keinen weiteren Text oder Begründungen liefern.
+    Deine Antwort muss **ausschließlich** ein JSON-Objekt sein, das die Punktzahlen von 0 bis 5 für jedes Kriterium enthält. Du darfst keinen weiteren Text oder Begründungen liefern.
     
     **Rubrik zur Analyse von Argumentationstexten:**
 
 1.  **Logik & Kohärenz:**
+    * 0 (Nicht vorhanden): Keine Argumentation gegeben
     * 1 (Ungenügend): Argumentation unlogisch, widersprüchlich oder chaotisch; keine klare Verbindung.
     * 2 (Mangelhaft): Logische Lücken oder kleinere Widersprüche; schwer nachvollziehbar.
     * 3 (Ausreichend): Grundlegende Logik erkennbar, aber kleine Schwächen.
@@ -35,6 +36,7 @@ SYSTEM_PROMPT_RUBRIC_EVAL = {
     * 5 (Sehr gut): Durchweg schlüssig und stringent; alle Ideen klar und logisch verbunden.
 
 2.  **Prägnanz & Klarheit:**
+    * 0 (Nicht vorhanden): Keine Prägnanz & Klarheit gegeben
     * 1 (Ungenügend): Extrem weitschweifig, redundant oder irrelevant; Kernbotschaft verloren.
     * 2 (Mangelhaft): Oft zu langatmig oder wiederholt; Kernbotschaft schwer fassbar.
     * 3 (Ausreichend): Inhaltlich verständlich, aber könnte prägnanter sein.
@@ -42,6 +44,7 @@ SYSTEM_PROMPT_RUBRIC_EVAL = {
     * 5 (Sehr gut): Äußerst prägnant und dicht; jedes Wort trägt zur Botschaft bei.
 
 3.  **Überzeugungskraft & Argumentstärke:**
+    * 0 (Nicht vorhanden): Keine Überzeugungskraft & Argumentstärke gegeben
     * 1 (Ungenügend): Schwach, unbelegt oder emotional/angreifend; keine Überzeugungskraft.
     * 2 (Mangelhaft): Wenig überzeugend, oberflächlich oder unzureichend begründet.
     * 3 (Ausreichend): Ansätze von Überzeugungskraft; Begründung nicht immer stichhaltig.
