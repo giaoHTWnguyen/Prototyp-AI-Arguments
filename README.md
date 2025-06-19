@@ -63,7 +63,6 @@ Um dieses Projekt lokal auszuführen, sollten diese Schritte befolgt werden:
 - competition_logic.py #Logik für Diskussionsfragen und Benutzerinteratkion
 - README.md #Diese Datei
 - requirements.txt #benötigte Python-Bibliotheken
-- app.py #Frontend für das Hauptprogramm, übernimmt den Workflow, von hier soll das Programm gestartet werden mit dem Befehl "streamlit run app.py"
 
 ## Ausführung der Anwendung
 

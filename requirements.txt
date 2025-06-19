@@ -1,2 +1,4 @@
-OpenAI
-dotenv
+streamlit
+openai
+python-dotenv
+pandas
