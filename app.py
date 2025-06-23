@@ -8,7 +8,7 @@ import uuid
 
 #Backend-Logik importieren aus anderen Dateien
 
-from api_handler import get_ai_feedback, get_ai_rubric_scores
+from api_handler import get_ai_feedback, get_ai_rubric_scores, get_ai_comparison_feedback
 from competition_logic import discussion_questions_categorized, get_user_argumentation, calculate_final_score
 from data_logger import log_feedback_data
 
@@ -24,7 +24,7 @@ st.markdown("Verbessere deine schriftliche Argumentation und Ideen mit intellige
 # Müssen also ein persistent Dictionary anlegen, um nicht die Variablen zu verlieren
 
 if 'user_id' not in st.session_state:
-    st.session_state.user_id = str(uuid.uuid4()) #Genriert eine einmalige ID pro Browsersitzung
+    st.session_state.user_id = str(uuid.uuid4()) #Generiert eine einmalige ID pro Browsersitzung
     st.info(f"Aktuelle Benutzer-ID: {st.session_state.user_id}")
 
 # Initialisierung aller benötigten Session State Variablen
@@ -109,6 +109,7 @@ user_argumentation_input = st.text_area(
     help="Schreibe hier deine Argumentation, zu der du ein Feedback erhalten möchtest.",
     key="initial_argument_input"
 )
+
 
 # Button Anforderung Feedback
 
@@ -200,7 +201,10 @@ if st.session_state.revision_mode:
                 st.session_state.rubric_scores_revised = get_ai_rubric_scores(full_user_input_for_ai_revised)
                 st.session_state.detailed_feedback_revised = get_ai_feedback(full_user_input_for_ai_revised)
 
-                #<--- hier Vergleichsfeedback einbauen
+                #<--- hier Vergleichsfeedback/Fazit einbauen
+
+                conclusion = get_ai_comparison_feedback(st.session_state.selected_question, st.session_state.original_argument, st.session_state.current_argument)
+
                 st.session_state.overall_score_revised = 0
                 if st.session_state.rubric_scores_revised:
                     st.session_state.overall_score_revised = calculate_final_score(st.session_state.rubric_scores_revised)
@@ -213,6 +217,8 @@ if st.session_state.revision_mode:
                     st.error("Rubrik-Bewertung für Überarbeitung konnte nicht extrahiert werden.")
                 st.subheader("--- Detailliertes KI-Feedback zur Überarbeitung ---")
                 st.info(st.session_state.detailed_feedback_revised)
+                st.subheader("--- Fazit zu deiner Entwicklung ---")
+                st.success(conclusion)
 
                 log_feedback_data(
                     text_version="Revised",
@@ -223,7 +229,6 @@ if st.session_state.revision_mode:
                     feedback=st.session_state.detailed_feedback_revised,
                     rubric_scores=st.session_state.rubric_scores_revised,
                     overall_score=st.session_state.overall_score_revised,
-                    #comparison_feedback=None # Für die erste Version gibt es kein Vergleichs-Feedback
                 )
                 st.sidebar.success("Revised Daten geloggt!")
                 st.success("Überarbeitungsprozess abgeschlossen!")
@@ -239,3 +244,5 @@ if st.sidebar.button("Neue Sitzung starten", key="reset_btn"):
 st.sidebar.markdown("---")
 st.sidebar.header("Über diese App")
 st.sidebar.info("Dies ist ein KI-gestützter Tutor zur Verbesserung der Argumentationsfähigkeiten.")
+st.sidebar.info("Die Gewichtung der Endpunktzahl ergibt sich aus 45% Logik, 35% Überzeugungskraft und 20% Prägnanz.")
+st.sidebar.success("Ab einer Punktzahl von 50 von möglichen 100 Punkten gibt es eine kleine Belohnung ;-)")

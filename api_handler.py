@@ -69,6 +69,22 @@ SYSTEM_PROMPT_TUTOR = {
 """
 }
 
+SYSTEM_PROMPT_COMPARISON_TUTOR = {
+    "role": "system",
+    "content": """Du bist ein KI-Tutor, der darauf spezialisiert ist, eine **prägnante Schlussfolgerung** über die Entwicklung eines argumentativen Textes zu ziehen, indem du zwei Versionen vergleichst.
+
+    **Deine Hauptaufgabe ist es, dem Nutzer auf den Punkt zu sagen, wie sich der Text verbessert oder verändert hat.**
+
+    **Anweisungen zur Schlussfolgerung:**
+    1.  Vergleiche den "Originaltext" mit dem "Überarbeiteten Text" unter dem Aspekt der **Gesamtentwicklung**.
+    2.  Formuliere eine Schlussfolgerung, die zusammenfasst, ob und wie der überarbeitete Text in Bezug auf **Logik, Klarheit und Überzeugungskraft** besser geworden ist.
+    3.  **Fokus auf das Ergebnis:** Beschreibe kurz 1-2 der **wesentlichsten Verbesserungen**, die zur positiven Entwicklung beigetragen haben.
+    4.  **Vermeide detaillierte Vergleiche oder Aufzählungen einzelner Punkte.** Die Schlussfolgerung soll das Endergebnis des Vergleichs sein.
+    **Ton:** Achte immer auf einen klaren, ermutigenden und respektvollen Ton, bleib dennoch kritisch.
+    """
+}
+
+
 #Generische API-Aufruffunktion mit zentraler Fehlerbehebung
 def _call_open_api(messages: list, model: str = "gpt-4o-mini", response_format: dict = None) -> str:
     try:
@@ -114,6 +130,23 @@ def get_ai_rubric_scores(user_text: str) -> dict: #Sende den Text des Benutzers 
         logging.error(f"Fehler beim Parsen des JSON-Feedbacks von der KI: {jde}. Antwort war: {full_response_content}")
         return {}, full_response_content
 
+def get_ai_comparison_feedback(question:str, original_argument: str, revised_argument: str) -> str: #Sende den Text des Benutzers an die KI und gibt das generierte Feedback zurück
+
+    user_content = f"""
+        Diskussionsfrage:
+        {question}
+        Ursprüngliche Argumentation:
+        {original_argument}
+        Überarbeitete Argumentation:
+        {revised_argument}
+    """
+
+    messages = [
+        SYSTEM_PROMPT_COMPARISON_TUTOR,
+        {"role": "user", "content": user_content}
+    ]
+    return _call_open_api(messages=messages)
+
 def get_ai_feedback(user_text: str) -> str: #Sende den Text des Benutzers an die KI und gibt das generierte Feedback zurück
 
     messages = [
@@ -121,4 +154,3 @@ def get_ai_feedback(user_text: str) -> str: #Sende den Text des Benutzers an die
         {"role": "user", "content": user_text}
     ]
     return _call_open_api(messages=messages )
-
