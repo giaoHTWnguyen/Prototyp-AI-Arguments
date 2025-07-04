@@ -61,6 +61,7 @@ Um dieses Projekt lokal auszuführen, sollten diese Schritte befolgt werden:
 - main.py #wird nicht mehr genutzt: Hauptprogramm, das im Terminal läuft, steuert den Workflow, von hier soll auch das Programm gestartet werden!
 - api_handler.py #Kommunikation mit der OpenAI API
 - competition_logic.py #Logik für Diskussionsfragen und Benutzerinteratkion
+- feedback_data.jsonl #Hier werden die gesammelten Daten zu Rubric Scores, OverallScore und Feedbackinformationen gesammelt
 - README.md #Diese Datei
 - requirements.txt #benötigte Python-Bibliotheken
 
