@@ -14,7 +14,7 @@ from data_logger import log_feedback_data
 
 # Streamlit App Konfiguration
 
-st.set_page_config(page_title="Argumentations-Tutor KI", layout="wide")
+st.set_page_config(page_title="Argumentations-Tutor KI", layout="centered")
 st.title("🗣️ KI-Argumentations-Tutor und Feedback-System")
 st.markdown("Verbessere deine schriftliche Argumentation und Ideen mit intelligentem Feedback!")
 
