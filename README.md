@@ -18,6 +18,10 @@ Dieses Projekt ist ein interaktiver KI-Tutor, der Benutzern dabei hilft, ihre ar
 
 Daten wurden selbst erhoben bei Event "Lange Nacht der Wissenschaften 2025" und in einer JSONL Datei siehe unten abgespeichert.
 
+## Zeitraum
+
+Die Daten wurden erhoben am 28.06.2025.
+
 ## Forschungsfrage
 
 Dieses Projekt dient der Beantwortung folgender Forschungsfrage und Hypothese:
@@ -26,19 +30,12 @@ Dieses Projekt dient der Beantwortung folgender Forschungsfrage und Hypothese:
 
 "Wie effektiv ist ein KI-basiertes System zur Generierung von formativem Feedback in Bezug auf die Qualitätsverbesserung schriftlicher Argumentationen und Nutzerakzeptanz"
 
-## Features
-
-- **Interaktives Feedback:** Erhalte detailliertes und formatives Feedback von einer KI zu deiner Argumentation.
-- **Rubrik-Bewertung:** Dein Text wird nach Kriterien wie Logik, Prägnanz, Überzeugungskraft bewertet.
-- **Überarbeitungsmöglichkeit:** Optimiere deinen Text basierend auf dem erhaltenen KI-Feedback.
-- **Flexible Diskussionsfragen:** Wähle aus einer Liste von kontroversen Themen.
-
 ## Projektstruktur
 
 - .env #Umgebungsvariablen wie API-Schlüssel
 - app.py #Die Hauptanwendung (Streamlit Frontend), die den gesamten Workflow steuert. Von hier aus das Programm starten!
 - main.py #wird nicht mehr genutzt: Hauptprogramm, das im Terminal läuft, steuert den Workflow, von hier soll auch das Programm gestartet werden!
-- api_handler.py #Kommunikation mit der OpenAI API
+- api_handler.py #Kommunikation mit der OpenAI API, Definition der AI-Rollen
 - competition_logic.py #Logik für Diskussionsfragen und Benutzerinteratkion
 - feedback_data.jsonl #Hier werden die gesammelten Daten zu Rubric Scores, OverallScore und Feedbackinformationen gesammelt
 - README.md #Diese Datei
@@ -78,3 +75,10 @@ Um die Streamlit-Anwendung zu starten, muss man im Terminal ins Hauptverzeichnis
 ```bash
    streamlit run app.py
 ```
+
+## Features
+
+- **Interaktives Feedback:** Erhalte detailliertes und formatives Feedback von einer KI zu deiner Argumentation.
+- **Rubrik-Bewertung:** Dein Text wird nach Kriterien wie Logik, Prägnanz, Überzeugungskraft bewertet.
+- **Überarbeitungsmöglichkeit:** Optimiere deinen Text basierend auf dem erhaltenen KI-Feedback.
+- **Flexible Diskussionsfragen:** Wähle aus einer Liste von kontroversen Themen.
